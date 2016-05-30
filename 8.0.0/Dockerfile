@@ -50,6 +50,10 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   # Clean up all the downloaded files
   && rm -rf /tmp/mq
 
+# Creating mquser
+RUN useradd mquser -G mqm && \
+    echo mquser:mqpass | chpasswd
+
 COPY *.sh /usr/local/bin/
 COPY *.mqsc /etc/mqm/
 
